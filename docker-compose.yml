@@ -4,8 +4,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER_FILE: /run/secrets/db_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
+    secrets:
+      - db_user
+      - db_password
 
   web:
     build: .
@@ -21,3 +24,9 @@ services:
 
 volumes:
   postgres_data:
+
+secrets:
+  db_user:
+    file: docker_secrets/db_user.txt
+  db_password:
+    file: docker_secrets/db_password.txt
