@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
     environment:
-      RAILS_ENV: development
+      EDITOR: vim
 
 volumes:
   postgres_data:
